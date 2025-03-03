@@ -1,22 +1,24 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@rules_7zip//:repo.bzl", "http_7z")
 
+_VULKAN_VERSION = "1.3.296.0"
+
 _vulkan_sdk_well_knowns = {
-    "1.3.243.0": struct(
+    _VULKAN_VERSION: struct(
         windows = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.3.243.0/windows/VulkanSDK-1.3.243.0-Installer.exe",
+            url = "https://sdk.lunarg.com/sdk/download/{0}/windows/VulkanSDK-{0}-Installer.exe".format(_VULKAN_VERSION),
             strip_prefix = "",
-            sha256 = "a45954b5f0ae682d43268df6e548168de58809240efb021f52531a631760caaf",
+            sha256 = "acb4ae0786fd3e558f8b3c36cc3eba91638984217ba8a6795ec64d2f9ffd8c4b",
         ),
         linux = struct(
-            url = "https://sdk.lunarg.com/sdk/download/1.3.243.0/linux/vulkansdk-linux-x86_64-1.3.243.0.tar.gz",
-            strip_prefix = "1.3.243.0/x86_64",
-            sha256 = "3bc06935f3363307daf68eb744e11e46d31f6b0a9e9f1d0d59271471ea27ad7c",
+            url = "https://sdk.lunarg.com/sdk/download/{0}/linux/vulkansdk-linux-x86_64-{0}.tar.gz".format(_VULKAN_VERSION),
+            strip_prefix = "{}/x86_64".format(_VULKAN_VERSION),
+            sha256 = "79b0a1593dadc46180526250836f3e53688a9a5fb42a0e5859eb72316dc4d53e",
         ),
         macos = struct(
-            url = "https://vertexwahn.de/lfs/v1/vulkansdk-macos-1.3.243.0.zip",
-            strip_prefix = "VulkanSDK/1.3.243.0/macOS",
-            sha256 = "6d769f313ce0e7f6bdd10dc207f88777d0774d2be65f574670fe462529f4dd11",
+            url = "https://vertexwahn.de/lfs/v1/vulkansdk-macos-{}.zip".format(_VULKAN_VERSION),
+            strip_prefix = "VulkanSDK/{}/macOS".format(_VULKAN_VERSION),
+            sha256 = "393fd11f65a4001f12fd34fdd009c38045220ca3f735bc686d97822152b0f33c",
         ),
     ),
 }
@@ -74,7 +76,7 @@ _vulkan_sdk_repo = repository_rule(
     },
 )
 
-def vulkan_repos(version = "1.3.243.0"):
+def vulkan_repos(version = _VULKAN_VERSION):
     ws = "@com_github_zaucy_rules_vulkan//"
 
     vulkan_sdk_info = _vulkan_sdk_well_knowns[version]
