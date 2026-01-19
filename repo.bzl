@@ -1,17 +1,20 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@rules_7zip//:repo.bzl", "http_7z")
 
-_VULKAN_VERSION = "1.3.296.0"
+_VULKAN_VERSION = "1.4.335.0"
+
+# https://sdk.lunarg.com/sdk/download/1.4.335.0/windows/vulkansdk-windows-X64-1.4.335.0.exe
+# https://sdk.lunarg.com/sdk/download/1.4.335.0/linux/vulkansdk-linux-x86_64-1.4.335.0.tar.xz
 
 _vulkan_sdk_well_knowns = {
     _VULKAN_VERSION: struct(
         windows = struct(
-            url = "https://sdk.lunarg.com/sdk/download/{0}/windows/VulkanSDK-{0}-Installer.exe".format(_VULKAN_VERSION),
+            url = "https://sdk.lunarg.com/sdk/download/{0}/windows/vulkansdk-windows-X64-{0}.exe".format(_VULKAN_VERSION),
             strip_prefix = "",
             sha256 = "acb4ae0786fd3e558f8b3c36cc3eba91638984217ba8a6795ec64d2f9ffd8c4b",
         ),
         linux = struct(
-            url = "https://sdk.lunarg.com/sdk/download/{0}/linux/vulkansdk-linux-x86_64-{0}.tar.gz".format(_VULKAN_VERSION),
+            url = "https://sdk.lunarg.com/sdk/download/{0}/linux/vulkansdk-linux-x86_64-{0}.tar.xz".format(_VULKAN_VERSION),
             strip_prefix = "{}/x86_64".format(_VULKAN_VERSION),
             sha256 = "79b0a1593dadc46180526250836f3e53688a9a5fb42a0e5859eb72316dc4d53e",
         ),
