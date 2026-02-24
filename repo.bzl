@@ -16,7 +16,7 @@ _vulkan_sdk_well_knowns = {
         linux = struct(
             url = "https://sdk.lunarg.com/sdk/download/{0}/linux/vulkansdk-linux-x86_64-{0}.tar.xz".format(_VULKAN_VERSION),
             strip_prefix = "{}/x86_64".format(_VULKAN_VERSION),
-            sha256 = "79b0a1593dadc46180526250836f3e53688a9a5fb42a0e5859eb72316dc4d53e",
+            sha256 = "ccab8047f33ef848e3928c7fdd19987b35da3085ad20178f473acc230fa3c5f2",
         ),
         macos = struct(
             url = "https://vertexwahn.de/lfs/v1/vulkansdk-macos-{}.zip".format(_VULKAN_VERSION),
