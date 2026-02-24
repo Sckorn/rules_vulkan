@@ -57,6 +57,7 @@ cc_library(
     name = "vulkan",
     hdrs = glob([
         "include/**/*.h",
+        "include/**/*.hpp",
     ]),
     strip_include_prefix = "include",
     deps = [":vulkan-1"],
